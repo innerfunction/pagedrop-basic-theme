@@ -16,7 +16,8 @@ const Layout = ({ children }) => {
     query SiteTitleQuery {
       site {
         siteMetadata {
-          title
+          title,
+          footerText
         }
       }
     }
@@ -39,9 +40,7 @@ const Layout = ({ children }) => {
             fontSize: `var(--font-sm)`,
           }}
         >
-          © {new Date().getFullYear()} &middot; Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
+          {data.site.metadata?.footerText ?? (<a href="https://pagedrop.com">Pagedrop</a>)}
         </footer>
       </div>
     </>
