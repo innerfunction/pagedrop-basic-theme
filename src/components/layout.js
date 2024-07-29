@@ -17,7 +17,9 @@ const Layout = ({ children }) => {
       site {
         siteMetadata {
           title,
-          footerText
+          settings {
+            footerText
+          }
         }
       }
     }
