@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
-const { siteMetadata } = require('./pagedrop.json')
+const siteMetadata = require('./pagedrop/domain.json')
 
 /**
  * @type {import('gatsby').GatsbyConfig}
@@ -13,6 +13,13 @@ module.exports = {
   siteMetadata,
   pathPrefix: `/${siteMetadata.domainId}`,
   plugins: [
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: './pagedrop/',
+      },
+    },
+    `gatsby-transformer-json`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
