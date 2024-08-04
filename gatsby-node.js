@@ -11,14 +11,23 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
           }
         }
       }
+      site {
+        siteMetadata {
+          title,
+          settings {
+            footerText
+          }
+        }
+      }
     }
   `)
+  const { site } = results.data
   results.data.allPagesJson.edges.forEach(edge => {
     const page = edge.node
     createPage({
       path: `/${page.slug}/`,
       component: require.resolve('./src/pages/page.js'),
-      context: page
+      context: { page, site }
     })
   })
 }
